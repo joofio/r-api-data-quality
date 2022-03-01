@@ -1,0 +1,181 @@
+# api-spec.yaml
+openapi: 3.0.0
+servers:
+  - description: Localhost
+    url: http://127.0.0.1:5762
+info:
+  description: This is a simple Plumber API with the spec defined in an external file
+  version: 1.0.0
+  title: Simple Plumber
+
+paths:
+  /eval_quality/{target}:
+    post:
+      summary: Evaluates colummns data quality
+      description: |
+        Pass a feature list to the model and column to assess and receive a evaluation of that target data quality
+      parameters:
+      - name: target
+        in: path
+        description: Target column
+        required: true
+        schema:
+          type: string
+          default: IMC
+          enum:
+          - A_PARA
+          - A_GESTA
+          - EUTOCITO_ANTERIOR
+          - VENTOSAS_ANTERIOR
+          - FORCEPS_ANTERIOR
+          - CESARIANAS_ANTERIOR
+          - IDADE_MATERNA
+          - PESO_INICIAL
+          - IMC
+          - NUMERO_CONSULTAS_PRE_NATAL
+          - IDADE_GESTACIONAL_ADMISSAO
+          - SEMANAS_GESTACAO_PARTO
+          - PESO_ADMISSAO_INTERNAMENTO
+          - ESTIMATIVA_PESO_ECO_30
+          - ESTIMATIVA_PESO_ECO_31
+          - ESTIMATIVA_PESO_ECO_32
+          - ESTIMATIVA_PESO_ECO_24
+          - ESTIMATIVA_PESO_ECO_25
+          - ESTIMATIVA_PESO_ECO_26
+          - ESTIMATIVA_PESO_ECO_27
+          - ESTIMATIVA_PESO_ECO_28
+          - ESTIMATIVA_PESO_ECO_29
+          - ESTIMATIVA_PESO_ECO_33
+          - ESTIMATIVA_PESO_ECO_34
+          - ESTIMATIVA_PESO_ECO_35
+          - ESTIMATIVA_PESO_ECO_36
+          - ESTIMATIVA_PESO_ECO_37
+          - ESTIMATIVA_PESO_ECO_38
+          - ESTIMATIVA_PESO_ECO_39
+          - ESTIMATIVA_PESO_ECO_40
+          - ESTIMATIVA_PESO_ECO_41
+
+      requestBody:
+        description: Pet object that needs to be added to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Features'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QualityEval'
+components:
+  schemas:
+    Features:
+
+      type: object
+      properties:
+        A_PARA:
+          type: integer
+          format: float
+        A_GESTA:
+          type: integer
+          format: float
+        EUTOCITO_ANTERIOR:
+          type: integer
+          format: float
+        VENTOSAS_ANTERIOR:
+          type: integer
+          format: float
+        FORCEPS_ANTERIOR:
+          type: integer
+          format: float
+        CESARIANAS_ANTERIOR:
+          type: integer
+          format: float
+        IDADE_MATERNA:
+          type: integer
+          format: float
+        PESO_INICIAL:
+          type: integer
+          format: float
+        IMC:
+          type: integer
+          format: float
+        NUMERO_CONSULTAS_PRE_NATAL:
+          type: integer
+          format: float
+        IDADE_GESTACIONAL_ADMISSAO:
+          type: integer
+          format: float
+        SEMANAS_GESTACAO_PARTO:
+          type: integer
+          format: float
+        PESO_ADMISSAO_INTERNAMENTO:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_30:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_31:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_32:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_24:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_25:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_26:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_27:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_28:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_29:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_33:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_34:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_35:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_36:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_37:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_38:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_39:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_40:
+          type: integer
+          format: float
+        ESTIMATIVA_PESO_ECO_41:
+          type: integer
+          format: float
+
+      xml:
+        name: Features
+    QualityEval:
+      type: object
+      properties:
+        result:
+          type: string
+          enum:
+          - "ok"
+          - "weak outlier"
+          - "strong outlier"
