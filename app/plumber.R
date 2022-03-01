@@ -1,10 +1,11 @@
 library(plumber)
 library(bnlearn)
 
-#* @apiTitle Gapminder API
-#* @apiDescription API for exploring Gapminder dataset
-load("/Users/joaoalmeida/obs-hc.rda")
+
+load("obs-hc.rda")
 model <- osa.hc.fit
+
+#* @filter cors
 cors<-function(req,res){
   res$setHeader("Acess-Control-Allow-Origin","*")
   if (req$REQUEST_METHOD=="OPTIONS"){
