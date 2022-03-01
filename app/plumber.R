@@ -17,6 +17,15 @@ cors<-function(req,res){
     plumber::forward()
   }
 }
+
+#* @get /
+#* @parser json
+#* @serializer json
+
+function(req,res){
+ret<-list(hello="world")
+ret
+}
 #* @post /eval_quality/<target>
 #* @param target:string
 #* @parser json
