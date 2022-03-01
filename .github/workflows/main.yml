@@ -17,3 +17,4 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           buildpack: https://github.com/virtualstaticvoid/heroku-buildpack-r.git
           dontautocreate: true
+          appdir: app
